@@ -100,7 +100,7 @@ img {
 /* Banner responsive */
 .banner {
   position: relative;
-  background-image: url('../images/imag.png');
+  background-image: url('../images/don.png');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -146,10 +146,6 @@ img {
 }
 
 /* Stats section responsive */
-.stats-section {
-  padding: 60px 20px;
-}
-
 .border-thick {
   border-width: 2px !important; 
   border-color: #00561b !important;
@@ -160,13 +156,8 @@ img {
   font-size: clamp(2rem, 5vw, 3rem);
 }
 
-/* Carousel responsive */
-.urgence-section {
-  padding: 60px 20px;
-  background-color: #fff;
-}
-
-.title{
+/* Titles responsive */
+.title, .titre{
   color: #00561b;
   font-weight: bolder;
   text-align: center;
@@ -176,52 +167,22 @@ img {
   font-size: clamp(2rem, 8vw, 6rem);
   margin: 40px 0;
 }
-
-.titlecarou{
-  font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+.bene{
+   color: #00561b;
+  font-weight: bolder;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: #ff7f00;
+  font-style: italic;
+  font-size: 2rem;
 }
 
-.appel-box {
-  background-color: #D4E8DB;
-  padding: 30px;
-  border-radius: 15px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.btn-orange {
+.missotitre{
   background-color: #ff7f00;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  margin-top: auto;
-}
-
-.btn-orange:hover {
-  background-color: #00561b;
   color: #fff;
-  transform: translateY(-2px);
-}
-.btn-orange a {
   text-decoration: none;
-  color: #fff;
-}
-
-.don-slide {
-  display: none;
-}
-
-.don-slide.active {
-  display: block;
-}
-
-.object-fit-cover {
-  object-fit: cover;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 /* Mission section responsive */
@@ -231,43 +192,228 @@ img {
 }
 
 .missonpar{
-  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(0.5rem, 3vw, 1.5rem);
   text-align: justify;
   line-height: 1.6;
 }
 
-.mydon {
+.mydon  {
   border: 4px solid #00561b;
   border-radius: 20px;
   width: 100%;
   height: auto;
 }
 
-/* Support section responsive */
-.soutien{
-  min-height: 300px;
-  width: 100%;
-  background-color: #00561b;
-  padding: 60px 20px;
+/* Volunteers section responsive */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.texte {
+  background-color: white;
+  border: 4px solid #00561b;
+  padding: 30px;
+  border-radius: 25px;
+  margin-bottom: 20px;
+}
+
+.bulle {
+  background-color:#00561b;
+  color: white;
+  padding: 50%;
+  border-radius: 50% 50% 50% 0;
+  width: clamp(150px, 25vw, 200px);
+  height: clamp(150px, 25vw, 200px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.bulle h2 {
+  font-size: clamp(5rem, 6vw, 3rem);
+  color: white;
+  text-decoration: none;
+  margin: 0 0 10px 0;
+}
+
+.bulle p {
+  font-size: clamp(2rem, 2.5vw, 1.2rem);
+  margin: 0;
+}
+
+/* Values section responsive */
+.valeur{
+  margin: 40px 20px;
+}
+
+.bloc {
+  background-color: #538d60;
+  padding: 30px 20px;
+  margin: 15px;
+  border-radius: 20px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.bloc:hover {
+  transform: translateY(-5px);
+}
+
+.bloc img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.bloc h3, .blocpara{
+  color: #f5f5f5;
+}
+
+.bloc h3 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  margin-bottom: 15px;
+}
+
+.blocpara {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  line-height: 1.5;
+}
+
+/* Images gallery responsive */
+.images{
+  background-color: #00561b;
+  padding: 40px 20px;
+}
+
+.tailleimg {
+  padding: 10px;
+}
+
+.tailleimg img{
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: solid 2px #fff;
+  transition: transform 0.3s ease;
+}
+
+.tailleimg img:hover {
+  transform: scale(1.05);
+}
+
+/* Action grid responsive */
+.action-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 40px 20px;
+}
+
+@media (min-width: 768px) {
+  .action-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.action-block {
+  border: 4px solid #00561b;
+  box-sizing: border-box;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+}
+
+.action-block.text {
+  background-color: white;
+}
+
+.action-block.text.green {
+  background-color:#00561b;
+  color: white;
+}
+
+.action-block h3{
+  color: black;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.soutien h1{
+.action-block.text.green h3 {
   color: white;
-  font-size: clamp(2rem, 6vw, 4rem);
-  margin-bottom: 20px;
 }
 
-.para{
-  color: white;
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  max-width: 800px;
+.page-centree{
+  text-align: center;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   line-height: 1.6;
+}
+
+.action-block.image {
+  padding: 0;
+}
+
+.action-block.image img {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Banner call to action responsive */
+.banners {
+  background-image: url('../images/vol8.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 60vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overla {
+  background-color: rgba(192, 103, 30, 0.4);
+  width: 100%;
+  height: 100%;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  margin: auto;
+}
+
+.content h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.content p {
+  font-size: clamp(1rem, 3vw, 1.3rem);
   margin-bottom: 30px;
+  line-height: 1.6;
 }
 
 /* Button responsive */
@@ -294,70 +440,6 @@ img {
   color: #00561b;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-/* Cards responsive */
-.carte {
-  border: 2px solid #00561b;
-  border-radius: 15px;
-  width: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-}
-
-.carte:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.carte img {
-  height: 250px;
-  object-fit: cover;
-}
-
-.action{
-  color: #00561b;
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  line-height: 1.3;
-}
-
-/* Demand section responsive */
-.blocdemande{
-  background-color: rgba(0, 86, 27, 0.1);
-  width: 100%;
-  padding: 60px 20px;
-}
-
-.titre-demande{
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  color: #00561b;
-  text-align: center;
-  margin-bottom: 30px;
-  line-height: 1.2;
-}
-
-.text-body-secondary, .text-body-emphasis{
-  text-align: left;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  line-height: 1.6;
-}
-
-.rectang{
-  width: 60px;
-  background-color: #00561b;
-  height: 4px;
-  border-radius: 2px;
-  margin-bottom: 15px;
-}
-
-/* Thank you section responsive */
-.merci{
-  color: #00561b;
-  font-weight: bolder;
-  text-align: center;
-  font-style: italic;
-  font-size: clamp(2rem, 6vw, 4rem);
-  margin: 60px 0 30px 0;
 }
 
 /* Footer responsive */
@@ -428,28 +510,34 @@ footer {
 }
 
 /* Media Queries */
-@media (max-width: 1200px) {
-  .container {
-    padding: 0 20px;
-  }
-}
-
 @media (max-width: 992px) {
-  .don-slide .row {
+  .container .row {
     flex-direction: column;
   }
   
-  .don-slide img {
-    margin-bottom: 20px;
+  .texte {
+    margin-bottom: 30px;
   }
   
-  .appel-box {
-    padding: 20px;
+  .bulle {
+    margin-top: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .stats-section .row > div {
+  .valeur .row {
+    flex-direction: column;
+  }
+  
+  .bloc {
+    margin: 10px 0;
+  }
+  
+  .images .row {
+    flex-direction: column;
+  }
+  
+  .tailleimg {
     margin-bottom: 20px;
   }
   
@@ -485,38 +573,34 @@ footer {
     padding: 0 15px;
   }
   
-  .stats-section {
-    padding: 40px 15px;
+  .container {
+    padding: 0 15px;
   }
   
-  .urgence-section {
-    padding: 40px 15px;
+  .texte {
+    padding: 20px;
   }
   
-  .soutien {
-    padding: 40px 15px;
+  .bloc {
+    padding: 20px 15px;
   }
   
-  .blocdemande {
-    padding: 40px 15px;
+  .action-block {
+    padding: 20px 15px;
+    min-height: 250px;
   }
   
-  .appel-box {
-    padding: 15px;
+  .banners {
+    min-height: 50vh;
+  }
+  
+  .overla {
+    padding: 30px 15px;
   }
   
   .btn-don {
     min-width: 180px;
     padding: 12px 20px;
-  }
-  
-  .carte img {
-    height: 200px;
-  }
-  
-  .rectang {
-    width: 40px;
-    height: 3px;
   }
 }
 
@@ -541,17 +625,6 @@ footer {
 .my-5 {
   margin-top: 3rem;
   margin-bottom: 3rem;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
 }
 
 .row {
@@ -586,47 +659,5 @@ img {
   .col-lg-6 {
     flex: 0 0 50%;
     max-width: 50%;
-  }
-}
-/* chiffres */
-
-.stats-section {
-    background: #f8f9fa;
-    padding: 60px 0;
-    text-align: center;
-}
-
-
-.stat-item {
-    background: #fff;
-    border-radius: 15px;
-    padding: 30px 25px; /* padding ajusté */
-    margin-bottom: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-    border: 3px solid #00561b; /* ✅ Bordure verte */
-}
-
-.stat-item:hover {
-    transform: translateY(-5px);
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #00561b;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.stat-label {
-    font-size: 1.2rem;
-    color: #333;
-}
-
-@media (max-width: 768px) {
-  .stat-item {
-    min-height: auto;
-    padding: 20px 15px;
   }
 }

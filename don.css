@@ -1,0 +1,68 @@
+
+.don{
+  text-align: center;
+  font-size:23px ;
+}
+.formul{
+  margin: 20px;
+}
+label{
+  color: #00561b;
+  font-size: 18px;
+  margin-left: 3px;
+}
+input, textarea{
+  border-radius: 8px;
+  border: solid 1px #00561b;
+  width: 100%;
+  
+}
+select{
+  border-radius: 8px;
+  width: 100%;
+  height: 30px;
+  border-color: #00561b;
+}
+.formulai{
+  width: 50%;
+}
+.coul{
+  background-color: #00561b;
+  border-radius: 8px;
+  width: 50%;
+  height: 455px;
+}
+.doncoeur{
+  margin-top: 3px;
+  border-radius: 12px;
+  border: 2px solid white;
+}
+.texteimg{
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+.btn{
+ display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.bouton{
+  padding:  3px 15%;
+  color: white;
+  background-color: #ff7f00;
+  border: 1px solid #00561b;
+  border-radius: 8px;
+}
+.bouton:hover{
+  background-color: #00561b;
+}
+@media (max-width: 768px)
+{
+  .coul{
+  background-color: #00561b;
+  border-radius: 8px;
+  width: 50%;
+  height: 485px;
+}
+}
