@@ -1,0 +1,218 @@
+<?php 
+$message= null;
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+// Récupération des données du formulaire
+$prenomnom= htmlspecialchars(strip_tags(trim($_POST['prenomnom'])));
+$adresse= htmlspecialchars(strip_tags(trim($_POST['adresse'])));
+$telephone= htmlspecialchars(strip_tags(trim($_POST['telephone'])));
+$email= htmlspecialchars(strip_tags(trim($_POST['email'])));
+$typedon= htmlspecialchars(strip_tags(trim($_POST['typedon'])));
+$soutiens= htmlspecialchars(strip_tags(trim($_POST['soutiens'])));
+$description= htmlspecialchars(strip_tags(trim($_POST['description'])));
+
+    // Vérification que tous les champs sont remplis
+    if (
+        empty($prenomnom) || empty($adresse) || empty($telephone) || empty($email) ||
+        $typedon === "-" || $soutiens === "-" || empty($description)
+    ) {
+        $message = "❌ Veuillez remplir tous les champs du formulaire.";
+    } else {
+        // Connexion à la base de données
+        $conn = new mysqli("localhost", "root", "", "dons");
+
+        if ($conn->connect_error) {
+            die("Connexion échouée: " . $conn->connect_error);
+        }
+// requete sql insertion
+$stmt= $conn->prepare("INSERT INTO donations (prenomnom,adresse,telephone,email,typedon,description,soutiens)
+      VALUES (?,?,?,?,?,?,?)");
+//  "sssssss" signifie : 7 chaînes (string)
+$stmt-> bind_param("sssssss",$prenomnom,$adresse,$telephone,$email,$typedon,$soutiens,$description);
+if($stmt->execute()){
+    $message = "🎉 Votre don a bien été reçu, merci infiniment !";
+}else{
+    $message = "Une erreur est survenue";
+}
+$stmt->close();
+$conn->close();
+}
+}
+?>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/don.css">
+    <link rel="stylesheet" href="css/a_propos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/jpg" href="images/favicon_Plan de travail 1.jpg">
+    <title>À propos de nous - Don du Cœur</title>
+</head>
+
+<body>
+    <nav class="entete">
+        <img src="images/don-du-coeur.jpg" alt="Logo Don du Cœur" class="logo">
+
+        <!-- Bouton hamburger -->
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+
+        <!-- Menu principal -->
+        <div class="menu-items" id="menu">
+            <a href="index.html" class="menu">Accueil</a>
+            <a href="page_a_propos.html" class="menu">À propos de nous</a>
+            <a href="Nosprojets.html" class="menu">Nos projets</a>
+            <a href="page_de_don.php" class="menu">Faire un don</a>
+            <a href="page_demande_aide.php" class="menu">Demande d'aide</a>
+            <a href="connexion.php" class="menu">Connexion</a>
+        </div>
+    </nav>
+
+    <h1 class="titre"> Faites un don</h1>
+    <p class="don">Votre générosité change des vies. Faites un don aujourd'hui.</p>
+    <p class="don">Un petit geste, un grand impact.</p>
+    <div class="row formul">
+        <div class="col formulai">
+            <form action="" method="POST">
+                <label for="prenomnom">Prénom et nom </label> <br>
+                <input type="text" id="prenomnom" name="prenomnom" placeholder="Prenom et nom"><br>
+                <label for="adresse">Adresse</label><br>
+                <input type="text" name="adresse" id="adresse" placeholder="Adresse"><br>
+                <label for="telephone">Téléphone</label><br>
+                <input type="text" id="telephone" name="telephone" placeholder="Telephone"><br>
+                <label for="mail">Email</label><br>
+                <input type="email" id="email" name="email" placeholder="Email"><br>
+                <label for="soutiens"> Je soutiens ce projet</label><br>
+                <select name="soutiens" id="soutiens">
+                    <option value="-">Selectionner un projet</option>
+                    <option value="1">Paiement ordonnance</option>
+                    <option value="2">collecte de vêtements pour les daaras</option>
+                    <option value="3">Collecte de denrés alimentaires</option>
+                    <option value="4">Construction d’une espace de jeux </option>
+                    <option value="5">Consultation gratuit</option>
+                    <option value="6">Organisation d'ateliers de sensibilisation à la santé</option>
+                </select><br>
+                <label for="typedon">Type de don</label><br>
+                <select name="typedon" id="typedon">
+                    <option value="-"> Veuillez choisir le type de don</option>
+                    <option value="01"> Vêtements</option>
+                    <option value="02"> Nourritures</option>
+                    <option value="03"> Argents</option>
+                    <option value="04"> Matériels</option>
+                    <option value="05"> Autre</option>
+                </select><br>
+                <label for="description"> Description du don</label><br>
+                <textarea name="description" id="description" rows="4" placeholder="Décrivez votre don..."></textarea>
+            
+        </div>
+        <div class="col coul">
+            <img src="images/don6.jpg" alt="" class="doncoeur">
+            <p class="texteimg">Chaque don compte. Grâce à votre générosité, nous pouvons soutenir des causes sociales importantes, aider les plus démunis, financer des projets éducatifs, sanitaires et environnementaux.</p>
+
+        </div>
+    </div>
+    <div class="btn">
+        <button type="submit" class="bouton">Envoyer</button>
+    </div>
+    </form>
+    <?php if (!is_null($message)): ?>
+<div id="message" class="alert alert-info text-center">
+    <?php echo $message; ?>
+</div>
+<?php endif; ?> 
+
+    <div class="row">
+        <div class="col">
+            <p style="margin-left: 30px;font-size: 18px;">Pour faire un don en espèces, veuillez remplir le formulaire puis scanner l’un des QR codes.</p>
+            <img src="images/wave_Plan de travail 1.jpg" alt="">
+        </div>
+        <div class="col"></div>
+
+    </div>
+ 
+    <!-- Footer -->
+    <footer class="bg-orange text-white py-5">
+        <div class="container">
+            <div class="row g-4 ms-lg-5" >
+                <div class="col-lg-4 col-md-6 col-12 text-center text-md-start">
+                    <img src="images/don-du-coeur.jpeg" alt="Logo Don du Cœur" class="logo-footer mb-3">
+                    <p class="texte-footer">
+                        Notre équipe s'engage à vous apporter leur plus grand soutien. Chaque demande
+                        sera traitée avec attention, confidentialité et humanité.
+                    </p>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12 text-center text-md-start ">
+                    <h4 class="fw-bold mb-3" style="font-size: 2rem;">Liens utiles</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="footer-menu text-white text-decoration-none">Accueil</a></li>
+                        <li><a href="page_a_propos.html" class="footer-menu text-white text-decoration-none">À propos de nous</a></li>
+                        <li><a href="Nosprojets.html" class="footer-menu text-white text-decoration-none">Nos projets</a></li>
+                        <li><a href="page_de_don.php" class="footer-menu text-white text-decoration-none">Faire un don</a></li>
+                        <li><a href="page_demande_aide.php" class="footer-menu text-white text-decoration-none">Demande d'aide</a></li>
+                        <li><a href="connexion.php" class="footer-menu text-white text-decoration-none">Connexion</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-12 col-12 text-center text-md-start">
+                    <h4 class="fw-bold mb-3" style="font-size: 2rem;">Contacts</h4>
+                    <p class="mb-1">📞 +221 33 900 00 00</p>
+                    <p class="mb-3">📧 donducoeur@gmail.com</p>
+                    <h5>Suivez-nous sur</h5>
+                    <div class="socials d-flex justify-content-center justify-content-md-start gap-3 mt-2">
+                        <a href="#" class="text-white fs-5"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="col text-center">
+                <p class="text-center">© 2025 Don du Coeur. Tous droits réservés.</p>
+            </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("active");
+        }
+
+        // Fermer le menu mobile quand on clique sur un lien
+        document.querySelectorAll('.menu').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById("menu").classList.remove("active");
+            });
+        });
+
+        // Fermer le menu mobile quand on clique en dehors
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById("menu");
+            const toggle = document.querySelector(".menu-toggle");
+            
+            if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+                menu.classList.remove("active");
+            }
+        });
+    </script>
+      <!-- javascript -->
+      <script>
+  // Attend que la page soit chargée
+  window.addEventListener("DOMContentLoaded", function () {
+    // Après 10 secondes (10 000 ms), on cache le message
+    setTimeout(function () {
+      var msg = document.getElementById("message");
+      if (msg) {
+        msg.style.display = "none";
+      }
+    }, 10000); // 10000 = 10 secondes
+  });
+</script>
+</body>
+
+</html>
